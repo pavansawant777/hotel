@@ -1,0 +1,55 @@
+<%- include("./layouts/header.ejs") %>
+    <div class="container ">
+        <form action="/update_about/<%=about[0].id%>" method="post" enctype="multipart/form-data">
+            <div class="row bg-light p-5">
+                <div class="col-md-12 my-2 mb-4 bg-light text-center">
+                    <h2>About Company Details</h2>
+                </div>
+                <div class="col-md-6 my-2">
+                    <label for="company_name">Company Name:</label>
+                    <input class="form-control" value="<%=about[0].name%>" type="text" id="name" name="name" required>
+                </div>
+                <div class="col-md-3 my-2">
+                    <label for="company_mobile">Company Mobile:</label>
+                    <input class="form-control" value="<%=about[0].mobile%>" type="number" name="mobile" required>
+                </div>
+                <div class="col-md-3 my-2">
+                    <label for="company_email">Company Email:</label>
+                    <input class="form-control" type="email" value="<%=about[0].email%>" name="email" required>
+                </div>
+                <div class="col-md-6 my-2">
+                    <label for="address">Address:</label>
+                    <textarea class="form-control" name="address" required><%=about[0].address%></textarea>
+                </div>
+                <div class="col-md-6 my-2">
+                    <label for="logo">Logo:</label>
+                    <input class="form-control" hidden type="text" value="<%=about[0].logo%>" name="logo">
+                    <input class="form-control" type="file" name="logo">
+                </div>
+               
+                <!-- <div class="col-md-3 my-2">
+                    <label for="telegram">Telegram:</label>
+                    <input class="form-control" type="text" value="<%=about[0].telegram%>" name="telegram" required>
+                </div>
+                <div class="col-md-3 my-2">
+                    <label for="twitter">Twitter:</label>
+                    <input class="form-control" type="url" name="twitter" value="<%=about[0].twitter%>" required>
+                </div>
+                <div class="col-md-3 my-2">
+                    <label for="whatsapp">Whatsapp No:</label>
+                    <input class="form-control" type="number" value="<%=about[0].whatsapp%>" name="whatsapp" required>
+                </div>
+                <div class="col-md-3 my-2">
+                    <label for="youtube">YouTube Link:</label>
+                    <input class="form-control" type="url" value="<%=about[0].youtube%>" name="youtube" required>
+                </div> -->
+                <div class="col-md-12 mt-4 text-center">
+                    <button class="btn btn-primary btn-md">Update Details</button>
+                </div>
+                <div class="col-md-12 text-right">
+                    <img src="/uploads/<%=about[0].logo%>" width="200px" alt="">
+                </div>
+            </div>
+        </form>
+    </div>
+    <%- include("./layouts/footer.ejs") %>

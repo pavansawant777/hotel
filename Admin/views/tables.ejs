@@ -1,0 +1,53 @@
+<%- include("./layouts/header.ejs")%>
+    <div class="container my-5">
+        <div class="row bg-light">
+            <div class="col-md-12 text-center">
+                <h3 class="my-3">Manage Tables</h3>
+            </div>
+            <div class="col-md-12 text-center">
+                <table class="table w-100 table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Table No</th>
+                            <th>Table Category</th>
+                            <th>Capacity</th>
+                            <th>Price /head</th>
+                            <th>Is Available</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(i=0;i<tables.length;i++){%>
+                            <tr>
+                                
+                                <td>
+                                    <%=tables[i].table_number%>
+                                </td>
+                                <td>
+                                    <%=tables[i].cat_name%>
+                                </td>
+                                <td>
+                                    <%=tables[i].capacity%>
+                                </td>
+                                <td>
+                                    <%=tables[i].price_per%>
+                                </td>
+                                <td>
+                                    <%=tables[i].is_available%>
+                                </td>
+                                <td style="white-space: nowrap;">
+                                    <a onclick="return confirm('Are u sure?')" href="/delete_tables/<%=tables[i].id%>">
+                                        <button class="btn btn-danger p-2"><i class="fa-solid fa-trash"></i></button>
+                                    </a>
+                                    <a href="/edit_tables/<%=tables[i].id%>">
+                                        <button class="btn btn-primary p-2"><i class="fa-solid fa-edit"></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            <%} %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include("./layouts/footer.ejs")%>

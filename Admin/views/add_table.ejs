@@ -1,0 +1,47 @@
+<%- include("./layouts/header.ejs") %>
+    <div class="row">
+
+        <div class="container ">
+            <form action="/save_table/" method="post" enctype="multipart/form-data">
+                <div class="row bg-light p-5">
+                    <div class="col-md-12 my-2 mb-4 bg-light text-center">
+                        <h2>Create Table</h2>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label >Table Number:</label>
+                        <input class="form-control" type="number" name="table_number" required>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label >Type of Table:</label>
+                        <select name="table_category" class="form-control">
+                            <option selected disabled>Select Category</option>
+                            <% for(i=0;i<categories.length;i++){%>
+                                <option value="<%=categories[i].cat_id%>">
+                                    <%=categories[i].cat_name%>
+                                </option>
+                                <%}%>
+                        </select>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label >Max Capacity of Table:</label>
+                        <input class="form-control" type="number" name="capacity" required>
+                    </div>
+                    <div class="col-md-6 my-2">
+                        <label >Price (per head) &#8377;:</label>
+                        <input class="form-control" type="text" name="price_per" required>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label >Is Available:</label>
+                        <select name="is_available" class="form-control">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 my-4 text-center">
+                        <button type="submit" class="btn btn-md btn-primary btn-lg">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include("./layouts/footer.ejs") %>

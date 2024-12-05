@@ -1,0 +1,18 @@
+<%- include("./layouts/header.ejs") %>
+    <div class="container ">
+        <form action="/update_category/<%=category[0].cat_id%>" method="post">
+            <div class="row bg-light p-5">
+                <div class="col-md-12 my-2 mb-4 bg-light text-center">
+                    <h2>Update Category</h2>
+                </div>
+                <div class="col-md-6 my-2">
+                    <label for="category">Category Name:</label>
+                    <input class="form-control" type="text" value="<%=category[0].cat_name%>" name="cat_name" required>
+                </div>
+                <div class="col-md-6 my-5 text-center">
+                    <button type="submit" class="btn btn-primary btn-md">Update Details</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <%- include("./layouts/footer.ejs") %>

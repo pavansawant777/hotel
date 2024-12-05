@@ -1,0 +1,59 @@
+<%- include("./layouts/header.ejs") %>
+<div class="row">
+
+    <div class="container ">
+        <form action="/save_category/" method="post">
+            <div class="row bg-light p-5">
+                <div class="col-md-12 my-2 mb-4 bg-light text-center">
+                    <h2>Add Table Category</h2>
+                </div>
+                <div class="col-md-10 my-2">
+                    <label for="category">Category Name:</label>
+                    <input class="form-control" type="text" id="category" name="cat_name" required>
+                </div>
+                <div class="col-md-2 my-4 text-left">
+                    <button type="submit" class="btn btn-primary btn-lg">Update Details</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container my-5">
+        <div class="row bg-light">
+            <div class="col-md-12 text-center">
+                <h3 class="my-3">Manage Categories</h3>
+            </div>
+            <div class="col-md-12 text-center">
+                <table class="table w-100 table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Category Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(i=0;i<categories.length;i++){%>
+                            <tr>
+                                <td>
+                                    <%=i+1%>
+                                </td>
+                                <td>
+                                    <%=categories[i].cat_name%>
+                                </td>
+                                <td style="white-space: nowrap;">
+                                    <a onclick="return confirm('Are u sure?')" href="/delete_category/<%=categories[i].cat_id%>">
+                                        <button class="btn btn-danger p-2"><i class="fa-solid fa-trash"></i></button>
+                                    </a>
+                                    <a href="/edit_category/<%=categories[i].cat_id%>">
+                                        <button class="btn btn-primary p-2"><i class="fa-solid fa-edit"></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            <%} %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    <%- include("./layouts/footer.ejs") %>

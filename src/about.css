@@ -1,0 +1,66 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+    h2
+      {
+        color: red;
+        font-size: 40px;
+        text-shadow: 3px 10px 10px yellow;
+      }
+     
+      .about-section-header
+      {
+        background-image:url(https://as2.ftcdn.net/v2/jpg/02/92/20/37/1000_F_292203735_CSsyqyS6A4Z9Czd4Msf7qZEhoxjpzZl1.jpg);
+        background-repeat: no-repeat ;
+			  background-size: 100% 100%;
+
+      }
+      .about-section-header a
+      {
+        color: white;
+      }
+
+
+      .about-section-header a:hover
+      {
+        color: red;
+        text-decoration: none;
+      }
+
+
+      .about-card 
+      {
+        background-image:url(https://t3.ftcdn.net/jpg/07/64/25/14/240_F_764251456_BQEm86pBRvnQKguMGWmGTxNxTaTfXhwi.jpg);
+        background-repeat: 'no-repeat' ;
+			background-size: '100% 100%';
+      }
+      .about-card-header img
+      {
+        height:200px;
+        width:100%;
+        box-shadow:0px 0px  10px white;
+      }
+      .about-card-body
+      {
+         text-shadow:0px 0px  10px yellow
+      }
+      .about-card-footer
+      {
+        height:200px;
+        width:100%;
+      }
+      .customer
+      {
+        color: white;
+        background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwjeLOdPEX232rBOFgtqRt9fOfuK8FCkRKEnOiU3T-wuHncVgUr8AkLHGgvYs5qM3DAzc&usqp=CAU);
+        background-repeat: no-repeat ;
+			  background-size: 100% 100%;
+      }
+      .para-1{
+        color: white;
+      }
+      .para-1:hover{
+        color:red;
+      }

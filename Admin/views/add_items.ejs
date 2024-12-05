@@ -1,0 +1,44 @@
+<%- include("./layouts/header.ejs") %>
+    <div class="row">
+
+        <div class="container ">
+            <form action="/save_menu/" method="post" enctype="multipart/form-data">
+                <div class="row bg-light p-5">
+                    <div class="col-md-12 my-2 mb-4 bg-light text-center">
+                        <h2>Add Item</h2>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label for="category">Dish Name:</label>
+                        <input class="form-control" type="text" name="dish_name" required>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label for="dish_category">Dish Category:</label>
+                        <select name="dish_category" class="form-control">
+                            <option>Select Category</option>
+                            <% for(i=0;i<categories.length;i++){%>
+                                <option value="<%=categories[i].cat_id%>">
+                                    <%=categories[i].cat_name%>
+                                </option>
+                                <%}%>
+                        </select>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label for="dish_price">Dish Price:</label>
+                        <input class="form-control" type="number" name="dish_price" required>
+                    </div>
+                    <div class="col-md-6 my-2">
+                        <label for="dish_contents">Dish Contents:</label>
+                        <input class="form-control" type="text" name="dish_contents" required>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label for="dish_image">Dish Image:</label>
+                        <input class="form-control" type="file" name="dish_image" required>
+                    </div>
+                    <div class="col-md-12 my-4 text-center">
+                        <button type="submit" class="btn btn-md btn-primary btn-lg">Add Dish</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include("./layouts/footer.ejs") %>

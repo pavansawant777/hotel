@@ -1,0 +1,83 @@
+<%- include("./layouts/header.ejs") %>
+    <!-- <div class="container my-5">
+        <div class="row bg-light">
+            <div class="col-md-12 text-center">
+                <h3 class="my-3">Manage pending</h3>
+            </div>
+            <div class="col-md-12 text-center">
+                <table class="table w-100 table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Customer Name</th>
+                            <th>Table Number</th>
+                            <th>Total Yet</th>
+                            <th>No of People</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(i=0;i<pending.length;i++){%>
+                            <tr>
+                                <td>
+                                    <%=i+1%>
+                                </td>
+                                <td>
+                                    <%=pending[i].customer_name%>
+                                </td>
+                                <td>
+                                    <%=pending[i].table_number%>
+                                </td>
+                                <td>
+                                    <%=pending[i].requirement%>
+                                </td>
+                                <td>
+                                    <%=pending[i].total%>
+                                </td>
+                                <td style="white-space: nowrap;">
+                                    <a onclick="return confirm('Are u sure?')"
+                                        href="/reject_pending/<%=pending[i].id%>">
+                                        <button class="btn btn-danger p-2"><i class="fa-solid fa-trash"></i></button>
+                                    </a>
+                                    <a href="/edit_pending/<%=pending[i].id%>">
+                                        <button class="btn btn-primary p-2"><i class="fa-solid fa-edit"></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            <%} %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> -->
+    <div class="container">
+        <div class="row">
+            <% for(i=0;i<pending.length;i++){%>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body" >
+                        <span class="d-flex" style="justify-content: space-between;">
+                            <h3 class="text-center"><%=pending[i].customer_name %></h3>
+                            <p class="h6 text-success my-2">
+                                <%=pending[i].cat_name %>
+                            </p>
+                        </span>
+                    
+                        <h5 style="display: flex; justify-content: space-between;">
+                            <span >Table No <%=pending[i].table_number %></span>
+                            <span >&#8377;&nbsp;<%=pending[i].total %></span>
+                        </h5>
+                        <div style=" text-align-last: right;">
+                            <!-- <p class="h4 btn text-success"><%=pending[i].cat_name %></p> -->
+                            <a href="/serve_customer/<%=pending[i].id %>">
+                                <button class="btn btn-block btn-primary rounded-pill mt-2">Start Serving&nbsp;&nbsp;<i class="fa-solid fa-caret-right"></i></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }%>
+
+        </div>
+    </div>
+    <%- include("./layouts/footer.ejs") %>

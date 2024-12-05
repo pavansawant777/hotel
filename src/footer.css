@@ -1,0 +1,62 @@
+
+      .ftco-footer
+      {
+        background-color: #1A1A1A;
+        font-family: "Roboto", Arial, sans-serif;;
+      }
+      .ft-1 p{
+          color:#BBBBBB;
+          font-size: 15px;
+      }
+     
+      .ft-2 p{
+          color:#BBBBBB;
+          font-size: 15px;
+      }
+      .ft-2 a{
+          color: white;
+          font-size: 15px;
+      }
+      .ft-2 a:hover{
+          color: red;
+          font-size: 15px;
+      }
+      .ft-4 p{
+        color:#BBBBBB;
+        font-size: 15px;
+      }
+      .ftco-footer-social span {
+        border-radius: 50%;
+       
+      }
+      .ftco-footer-social span:hover {
+        border-radius: 10%;
+      }
+      
+     
+      .copyright
+      {
+        color:#BBBBBB;
+        font-size: 15px;
+      }
+      .copyright a
+      {
+        color:#BBBBBB;
+        font-size: 15px;
+      }
+
+
+@media(max-width:667px){
+  
+.nav-link h6{
+  color: white;
+  font-size: 20px;
+}
+.nav-link h6:hover{
+  color: red;
+}
+}
+    
+
+        
+      

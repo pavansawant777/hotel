@@ -1,0 +1,46 @@
+<%- include("./layouts/header.ejs") %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>SN</th>
+                            <th>Customer Name</th>
+                            <th>Price Paid</th>
+                            <th>Table No</th>
+                            <th>Type of Booking</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(i=0;i<bills.length;i++){ %>
+                            <tr>
+                                <td>
+                                    <%=i+1%>
+                                </td>
+                                <td>
+                                    <%=bills[i].customer_name%>
+                                </td>
+                                <td>
+                                    <%=bills[i].price_paid%>
+                                </td>
+                                <td>
+                                    <%=bills[i].table_number%>
+                                </td>
+                                <td>
+                                    <%=(bills[i].was_online=='no')?'Offline':'Online'%>
+                                </td>
+                                <td>
+                                    <%=bills[i].date_modified%>
+                                </td>
+                                <td><i class="fa-solid fa-print text-primary"></i></td>
+                            </tr>
+                            <% }%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include("./layouts/footer.ejs") %>

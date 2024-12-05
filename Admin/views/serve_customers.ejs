@@ -1,0 +1,172 @@
+<%- include("./layouts/header.ejs") %>
+    <div class="container">
+        <style>
+            .card {
+                /* width: 300px; */
+                /* height: 200px; */
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: box-shadow 0.3s ease-in-out;
+                animation: flashShadow 1.5s infinite alternate;
+                /* margin: 50px auto; */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /* font-size: 20; */
+                color: #333;
+            }
+            
+            @keyframes flashShadow {
+                0% {
+                    box-shadow: 0px 0px 0px 20px rgb(255, 0, 0);
+                }
+
+                100% {
+                    box-shadow: 0px 0px 0px 20px rgba(131, 255, 23, 0.675);
+                }
+            }
+        </style>
+        <div class="row">
+            <% for(i=0;i<pending.length;i++){%>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="/serve_item/<%=pending[i].id%>/<%=pending[i].table_number%>" method="post">
+                            <h3 class="text-center">
+                                <%=pending[i].customer_name %>
+                                    <p class="h4 btn text-success">
+                                        <%=pending[i].cat_name %>
+                                    </p>
+                            </h3>
+                            <input type="text" hidden value="<%=pending[i].id%>" id="userId"></input>
+                            <h5 style="display: flex; justify-content: space-between;">
+                                <span class="mx-auto my-0 fw-bold">Table No <span id="tableNumber" value="<%=pending[i].table_number %>"><%=pending[i].table_number %></span></span>
+                                <!-- <span>&#8377;&nbsp;<%=pending[i].total %></span> -->
+                            </h5>
+
+                            <h5 class="d-flex">
+                                <select required id="menuType<%=i%>" onchange="setMenuItem(this.value,'menu_item<%=i%>')"
+                                    class="form-control w-50 mx-2">
+                                    <option selected disabled>Type of Meal</option>
+                                    <% for(j=0;j<categories.length;j++){%>
+                                        <option value="<%=categories[j].cat_id%>">
+                                            <%=categories[j].cat_name%>
+                                        </option>
+                                        <%}%>
+                                </select>
+                                <select required name="menu_item" id="menu_item<%=i%>"
+                                    class="form-control w-50 mx-2">
+                                    <option selected disabled>choose Type first</option>
+                                </select>
+                            </h5>
+                            <h5 class="d-flex flex-row w-100">
+                                <!-- <input class="form-control ml-5 w-25 p-0 m-0" type="button" value="-" style="font-size: 2rem;"> -->
+                                <p class="fw-bold h5 my-auto w-50" >Quantity</p> 
+                                <span class="d-flex  w-50" style="justify-content: end;">
+                                    <button type="button" onclick="if(Number(quantity.value)>1) quantity.value=Number(quantity.value)-1" class="btn p-2 ml-auto " style="font-size: 2.5rem;">-</button>
+                                    <input id="quantity" readonly class="form-control border-0 text-center" style="font-size: 1.7rem;width: 3vw;background-color: white !important;" type="text" value="1" name="quantity">
+                                    <button type="button" onclick="if(Number(quantity.value)<9) quantity.value=Number(quantity.value)+1" class="btn p-2" style="font-size: 2.2rem;">+</button>
+                                </span>
+                            </h5>
+                            <div style="display: flex; justify-content: space-between;">
+
+                                <button onclick="viewBill(tableNumber.innerText,userId.value)" type="button" class="btn  btn-primary rounded-pill mt-2" data-toggle="modal" data-target="#exampleModalCenter">View Orders&nbsp;<i
+                                        class="fa-solid fa-caret-right"></i></button>
+                                <button  class="btn  btn-primary rounded-pill mt-2">+ Serve Item&nbsp;<i
+                                        class="fa-solid fa-love"></i></button>
+                                    </div>
+                                    <a href="/unpaid/<%= pending[i].id %>/<%=pending[i].table_number%>">
+                                        <button type="button" class="btn bg-secondary text-white btn-block w-100 mt-3 rounded-pill mt-2">Move to Billing&nbsp;&nbsp;<i class="fa-solid fa-arrow-right my-auto"></i></button>
+                                        </a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% }%>
+
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="w-100 d-flex" style="justify-content: space-around;">
+            <h3 class="modal-title fw-bold" id="exampleModalLongTitle">Modal title</h3>
+            <h4 class="my-auto">Table Number ~ <span id="shivbaba"></span></h4>
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th>Dish Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsOrdered">
+                            <tr class="d-flex">
+                                <td ><h3>Nothing&nbsp;Ordered&nbsp;Yet</h3></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <h4>Total&nbsp;Bill</h4>&nbsp;&nbsp; -->
+        <button type="button" class="btn bg-transparent border-0 fw-bold text-dark btn-secondary" data-dismiss="modal"><span class="h5">Total&nbsp;Bill</span>&nbsp;&nbsp;<span class="h5">&#8377;&nbsp;</span><span class="h5" id="totalPrice"></span></button>
+        <!-- <span class="h5 fw-bold ">&#8377;&nbsp;<span id="totalPrice"></span></span> -->
+        <!-- <button type="button" class="btn btn-primary">5000</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+    <script>
+        viewBill=(table,user)=>{
+            item=""
+            total=0;
+            console.log(table,user)
+            fetch(`http://localhost:5000/getMenuList/${user}`).then(res=>res.json()).then(data=>{
+                console.log(data)
+                for(i=0;i<data.length;i++){
+                    item+= `<tr>
+                        <td>${data[i].dish_name}</td>
+                        <td>${data[i].dish_price}</td>
+                        <td>${data[i].quantity}</td>
+                        </tr>`
+                    total+=data[i].quantity*data[i].dish_price
+                }
+                exampleModalLongTitle.innerText=data[0].customer_name
+                itemsOrdered.innerHTML=item
+                shivbaba.innerText=data[0].table_number
+                totalPrice.innerText=total
+                fetch(`http://localhost:5000/setPrice/${total}/${user}`).then(r=>r.json()).then(d=>console.log(d))
+            })
+        }
+        setMenuItem=(type,rank)=>{
+            items=""
+            console.log(type,"SARTHAK")
+            fetch(`http://localhost:5000/getMenuItem/${type}`).then(res=>res.json()).then(data=>{
+                for(i=0;i<data.length;i++){
+                    console.log(data[i])
+                    items+=(`<option class='form-control' value='${data[i].id}'>${data[i].dish_name}</option>`)
+                }
+                // console.log(rank,"MISAL")
+                document.getElementById(rank).innerHTML=items
+            })
+        }
+    </script>
+    <%- include("./layouts/footer.ejs") %>
